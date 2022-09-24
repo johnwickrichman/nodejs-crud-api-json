@@ -7,11 +7,9 @@ let conn = require("./connect");
 // middleware สำหรับแปลง json object เป็น javascript object
 router.use(express.json());
 
-
 let bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
-
 
 
 /* GET home page. */
@@ -50,7 +48,6 @@ router.post('/create', async (req, res) => {
 
 
 
-
 /* GET Read user from Database */
 router.get('/read', async (req, res) => {
   try {
@@ -75,8 +72,6 @@ router.get('/read', async (req, res) => {
 
   }
 })
-
-
 
 
 
@@ -108,7 +103,6 @@ router.get('/read/single/:email', async (req, res) => {
 
   }
 })
-
 
 
 
@@ -186,14 +180,6 @@ router.delete('/delete/:email', (req, res) => {
 
 
 })
-
-
-
-
-
-
-
-
 
 
 
