@@ -142,8 +142,50 @@ router.patch('/update/:email', async (req, res) => {
     return res.status(500).send();
 
   }
-} )
 
+})
+
+
+
+
+/* Delete user from Database */
+router.delete('/delete/:email', (req, res) => {
+
+  email = req.params.email;
+
+  try {
+
+    let sql = "DELETE FROM users WHERE email=?";
+
+    conn.query(sql, [email], (err, result) => {
+
+      if (err) {
+        console.log(err);
+        return res.status(400).send();
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({
+          message: "No user with that email"
+        });
+        
+      } else {
+        return res.status(200).json({
+          message: "User Deleted successfully!"
+        });
+      }
+
+    })
+
+  } catch (e) {
+
+    console.log(e);
+    return res.status(500).send();
+
+  }
+
+
+})
 
 
 
