@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 
 
 
-/* GET home page. */
+/* POST Insert new user to database */
 router.post('/create', async (req, res) => {
 
   const { name, email, password } = req.body;
@@ -49,7 +49,30 @@ router.post('/create', async (req, res) => {
 
 
 
+/* GET Read user from Database */
+router.get('/read', async (req, res) => {
+  try {
 
+    let sql = "SELECT * FROM users";
+
+    conn.query(sql, (err, result) => {
+
+      if (err) {
+        console.log(err);
+        return res.status(400).send();
+      }
+
+      return res.status(200).json(result);
+
+    })
+
+  } catch (e) {
+
+    console.log(e);
+    return res.status(500).send();
+
+  }
+})
 
 
 
